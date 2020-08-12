@@ -3,9 +3,9 @@
 #include "robotis_controller_msgs/SyncWriteItem.h"
 
 /*
-Converts a float64 to a SyncWriteItem message that controlls the position of the gripper
+Converts a float64 to a SyncWriteItem message
 
-Postition:
+Position:
                 Completely Open   Completely Closed
 Float64         0                 1.0
 Uint Position   0                 738
