@@ -15,7 +15,8 @@ class GripperHandler
   public:
     ros::NodeHandle n;
     ros::Subscriber sub;
-    ros::Publisher pub;
+    ros::Publisher position_pub; 
+    ros::Publisher enable_pub;
 
     void init();
     void spin();
@@ -24,8 +25,18 @@ class GripperHandler
 
 void GripperHandler::init()
 {
-    pub = n.advertise<robotis_controller_msgs::SyncWriteItem>("/robotis/direct/sync_write_item", 100);
+    position_pub = n.advertise<robotis_controller_msgs::SyncWriteItem>("/robotis/direct/sync_write_item", 5);
+    enable_pub = n.advertise<robotis_controller_msgs::SyncWriteItem>("/robotis/sync_write_item", 5);
+    
+    //enable torque
+    robotis_controller_msgs::SyncWriteItem torque_msg;
+    torque_msg.item_name = "torque_enable";
+    torque_msg.joint_name.push_back("gripper");
+    torque_msg.value.push_back(0);
+    enable_pub.publish(torque_msg);
+    
     sub = n.subscribe("gripper_position", 100, &GripperHandler::callback, this); 
+    
 }
 
 void GripperHandler::spin()
@@ -43,7 +54,7 @@ void GripperHandler::callback(const std_msgs::Float64::ConstPtr& msg)
       goal_position_msg.joint_name.push_back("gripper");
       goal_position_msg.value.push_back((*msg).data * 738);
 
-      pub.publish(goal_position_msg);
+      position_pub.publish(goal_position_msg);
     }
 }
 
