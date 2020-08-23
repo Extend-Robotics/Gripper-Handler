@@ -12,6 +12,8 @@ git clone https://github.com/Extend-Robotics/ROBOTIS-Framework-msgs
 wait
 git clone https://github.com/Extend-Robotics/RH-P12-RN-A.git
 wait
+git clone https://github.com/Extend-Robotics/Gripper-Handler.git
+wait
 
 cd ..
 catkin build
