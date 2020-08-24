@@ -18,3 +18,10 @@ wait
 cd ..
 catkin build
 wait
+
+# Create real-time scheduling priority (rtprio) for USER_GROUP (your user group)
+sudo bash -c 'echo "@extend - rtprio 99" > /etc/security/limits.d/robotis-rtprio.conf'
+# Register USER_ID (your user ID) to dialout group in order to gain access to /dev/ttyUSB0
+sudo usermod –aG dialout extend
+
+# Restart or log out, and log in to validate the change in order to gain access to /dev/ttyUSB0
