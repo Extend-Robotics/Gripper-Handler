@@ -19,6 +19,8 @@ cd ..
 catkin build
 wait
 
+echo "source ~/ws_gripper_handler/devel/setup.bash # from setup_gripper_handler.bash" >> ~/.bashrc
+
 # Create real-time scheduling priority (rtprio) for USER_GROUP (your user group)
 sudo bash -c 'echo "@extend - rtprio 99" > /etc/security/limits.d/robotis-rtprio.conf'
 # Register USER_ID (your user ID) to dialout group in order to gain access to /dev/ttyUSB0
