@@ -5,3 +5,6 @@ Position control uses /gripper_position , uses a Float64 message with 0 for open
 
 Force control uses /gripper_force , uses a Float64 message with 0.5 default current (recommended value, it is set through /gripper_handler/default_force parameter)
 
+For direct ros control: Protocol 2.0 (-A), 2M baudrate, ID 1
+For UR cap control: still have to figure it out
+
